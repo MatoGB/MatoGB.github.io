@@ -39,3 +39,14 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded" , function(event){
+if(localStorage.getItem("username")){
+        document.getElementById("usuario").textContent = localStorage.getItem("username");
+    }
+
+if (!localStorage.getItem("username")){
+      alert("Para visitar nuestra página primero debe iniciar sesión.")
+      window.location = "login.html"
+    } 
+})

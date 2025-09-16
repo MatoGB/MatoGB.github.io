@@ -11,19 +11,33 @@
   <link href="css/styles.css" rel="stylesheet">
   <style>
     body {
-      background-color: rgb(248, 249, 250);
+      background-image: url(img/fondo.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      /* height: 83vh;  PROXIMAMENTE... */
     }
   </style>
 </head>
 
 <body>
-  <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <div class="container signin">
+    <div class="row">
+      <div class="col-12 col-md-12 col-xl-12">
+      <h1><span id="e">e•</span>mercado</h1>
+          <p><strong>Inicia sesión para poder continuar</strong></p>
+          <div id="form">
+                  <form action="/login" method="POST" id="formulario">
+                      <label for="username"> Ingrese su nombre de usuario</label><br>
+                      <input type="text" id="username" name="username" required><br>
+                      <label for="password"> Ingrese su contraseña</label><br>
+                      <input type="password" id="password" name="password" required minlength="8"><br>
+                      <input id="enviar" type="submit" value="Ingresar">
+                  </form>
+          </div>
       </div>
     </div>
-  </main>
+  </div>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -33,6 +47,7 @@
     </div>
   </footer>
   <script src="js/login.js"></script>
+
 </body>
 
 </html>
