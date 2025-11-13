@@ -1,88 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  </head>
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 justify-content-between">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="categories.html">Categorías</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="products.html">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sell.html">Vender</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="usuario" role="button"></a>
+                <div class="dropdown-menu dropdown-menu-end" id="userDropdown">
+                  <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+                  <a onclick="logOut()" class="dropdown-item" href="#" id="logout-btn">Cerrar sesión</a>
+                </div>
+          </li>
+            <li class="nav-item position-relative">
+                <a class="nav-link" href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="carritoCantidad" class="position-absolute rounded-pill start-100 translate-middle badge bg-danger text-white"></span>
+                </a>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <br /><br /><br />
+      <div class="container">
+        <div class="row border rounded border-2">
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <button class="btn btn-sm btn-light text-dark btn-custom" onclick="window.location.href='products.html'">← Volver al listado</button>
+            <button class="btn btn-light text-danger btn-custom btn-fav">❤ Añadir favoritos</button>
+          </div>
+          <div class="col-6 p-5" id="imagen-producto"></div>
+          <div class="col-6" id="info-producto"></div>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="products.html">Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="my-profile.html" id="usuario"></a>
-          </li>
-        </ul>
+          <div id="calificaciones">
+            <h3 style="color: black;">Añade tu comentario:</h3>
+
+            <div class="mb-3">
+              <label style="color: black;">Tu calificación:</label>
+              <div id="stars">
+                <i class="fas fa-star star" onclick="rate(1)"></i>
+                <i class="fas fa-star star" onclick="rate(2)"></i>
+                <i class="fas fa-star star" onclick="rate(3)"></i>
+                <i class="fas fa-star star" onclick="rate(4)"></i>
+                <i class="fas fa-star star" onclick="rate(5)"></i>
+              </div>
+              <small style="color: black;">Selecciona tu calificación</small>
+            </div>
+
+            <div class="form-control d-flex flex-column gap-3 " id="form-calificacion">
+              <textarea
+                id="commentText"
+                placeholder="Escribe tu comentario..."
+                rows="3"
+                style="width: 60%; margin-top: 5px"
+              ></textarea>
+              <button class="col-2" onclick="addComment()">
+                Enviar Comentario
+              </button>
+            </div>
+            <br /><br /><br />
+            <h3>Opiniones destacadas:</h3>
+            <div id="lista-calificaciones" style="margin-top: 20px"></div>
+            <div id="commentsList"></div>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      <h3 style="display: flex; justify-content: center">
+        Productos relacionados
+      </h3>
+      <br />
+
+      <div
+        id="relatedProducts"
+        class="carousel-inner containter d-flex justify-content-center"
+      ></div>
+    </main>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-end">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>
+          Este sitio forma parte de
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+            >Jovenes a Programar</a
+          >
+        </p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
-  </nav>
-  <main>
-    <br><br><br>
-    <div class="container">
-      <div class="row border rounded border-2">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-          <button class="btn btn-sm btn-light text-dark" onclick="window.location.href='products.html'">← Volver al listado</button>
-          <button class="btn btn-light">Añadir favoritos ❤</button>
-        </div>
-        <div class="col-6" id="imagen-producto">
-          <h1>(IMAGEN)</h1>
-        </div>
-        <div class="col-6" id="info-producto">
-          <h1>Juego de comedor.</h1>
-          <p>Un conjunto sencillo y sólido, ideal para zonas de comedor pequeñas, hecho en madera maciza de pino.</p>
-          <p>UYU 4000</p>
-          <p>6 cuotas de UYU 666 sin interés</p>
-          <p>Ver tabla de medidas </p> 
-          <p>★ Ver calificaciones</p>
-          <p>Se han vendido 88 unidades</p>
-        </div>
-
-      </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js"></script>
+  </body>
 </html>
